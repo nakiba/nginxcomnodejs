@@ -5,7 +5,7 @@ const config = {
     host: 'db',
     user: 'root',
     password: 'root',
-    database: 'nodedb'
+    database: 'nodedb2'
 }
 
 
@@ -18,7 +18,7 @@ connection.query(sql)
 let nomes = [];
 
 connection.query("SELECT * FROM people", function(error, result, fields){
-    if(error) return callback(error);
+    if(error) return error;
 
     result.forEach(element => {
         nomes.push(element.name + '<br>');            
