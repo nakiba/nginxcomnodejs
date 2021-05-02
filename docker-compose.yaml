@@ -10,9 +10,11 @@ services:
         tty: true        
         networks: 
             - mynetwork
-        environment: 
-            - MYSQL_DATABASE=nodedb    
+        environment:
             - MYSQL_ROOT_PASSWORD=root
+        volumes:
+            - mysqldata:/var/lib/mysql
+
     app:
         build: 
             context: ./node
@@ -30,10 +32,12 @@ services:
             context: ./nginx
         container_name: nginx
         ports:  
-            - "8080:80"
+            - "8085:80"
         networks: 
             - mynetwork    
 networks: 
     mynetwork:
         driver: bridge
 
+volumes:
+    mysqldata:
